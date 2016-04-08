@@ -57,7 +57,12 @@ Rails.application.routes.draw do
 
   scope '/api' do
     scope '/v1' do
-      resources :sounds
+      resources :sounds, only: [:index]
+      resources :users, only: [:create, :show] do
+        resources :learned_sounds, only: [:index, :create]
+        resources :sounds, only: [:show]
+        resources :progress, only: [:index]
+      end
     end
   end
 end

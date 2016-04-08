@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408203455) do
+ActiveRecord::Schema.define(version: 20160409123625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "learned_sounds", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "sound_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sounds", force: :cascade do |t|
     t.datetime "created_at",        null: false
@@ -24,6 +31,17 @@ ActiveRecord::Schema.define(version: 20160408203455) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.string   "name"
+    t.string   "card_file_name"
+    t.string   "card_content_type"
+    t.integer  "card_file_size"
+    t.datetime "card_updated_at"
+    t.string   "translation"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "user_hash"
   end
 
 end
